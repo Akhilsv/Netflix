@@ -32,6 +32,9 @@ const OneMovieContainer = () => {
 const OneMovieHolder = styled.div`
 	width: 100vw;
 	height: 100vh;
+	@media (max-width: 600px) {
+		height: 70vh;
+	}
 `;
 // const Img = styled.img`
 // 	object-fit: cover;
