@@ -1,8 +1,11 @@
 import { useContext } from 'react';
 import { FetchContext } from './FetchContext';
 import Nav from './components/Nav';
-import OneMovieContainer from './components/OneMovieContainer';
-import HorizontalContainer from './components/HorizontalContainer';
+import { Route, Switch } from 'react-router-dom';
+import Tv from './Pages/Tv'
+import Home from './Pages/Home';
+import MovieDetails from './components/Reuse/MovieDetails';
+
 function App() {
 	// const { fetchData,data } = useContext(FetchContext);
 	// const popularHandler = (e) => {
@@ -12,11 +15,20 @@ function App() {
 	return (
 		<>
 			<Nav />
-			<OneMovieContainer />
-			<HorizontalContainer type={'popular'} name={'Popular on Netflix'} />
-			<HorizontalContainer type={'top_rated'} name={'Top Rated'} />
-			<HorizontalContainer type={'upcoming'} name={'Upcoming'} />
-			
+			<Switch>
+				<Route exact path='/home'>
+					<Home />
+				</Route>
+				<Route exact path='/tv'>
+					<Tv />
+				</Route>
+				<Route exact path='/:movieId'>
+					<MovieDetails />
+				</Route>
+				<Route exact path='*'>
+					<Home />
+				</Route>
+			</Switch>
 		</>
 	);
 }

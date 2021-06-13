@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FetchContext } from '../FetchContext';
 
-const OneMovieContainer = () => {
+const OneMovieContainer = ({type,device}) => {
 	const { fetchData, data, loading } = useContext(FetchContext);
 	const baseUrl = `https://image.tmdb.org/t/p/original/`;
 	useEffect(() => {
-		fetchData('popular');
+		fetchData(type,device);
 	}, []);
 	let poster = '';
 	let randomMovie = '';

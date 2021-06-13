@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { RiMovie2Fill } from 'react-icons/ri';
 import { BsSearch, BsFillTvFill } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
 const Nav = () => {
 	return (
 		<>
@@ -9,19 +10,19 @@ const Nav = () => {
 				<AppLogo>NETFLIX</AppLogo>
 				<MenuHolder>
 					<li>
-						<a href='##'>
+						<NavLinks to='/1243' activeClassName='active'>
 							<BsSearch />
-						</a>
+						</NavLinks>
 					</li>
 					<li>
-						<a href='##'>
+						<NavLinks to='/home'>
 							<RiMovie2Fill />
-						</a>
+						</NavLinks>
 					</li>
 					<li>
-						<a href='##'>
+						<NavLinks to='/tv'>
 							<BsFillTvFill />
-						</a>
+						</NavLinks>
 					</li>
 				</MenuHolder>
 			</NavBar>
@@ -61,15 +62,8 @@ const MenuHolder = styled.ul`
 		text-decoration: none;
 		list-style: none;
 	}
-	& a {
-		font-size: 1.8rem;
-		font-weight: 800;
-		text-decoration: none;
-		color: #ffffff;
-		cursor: pointer;
-	}
+
 	@media (max-width: 600px) {
-		
 		position: fixed;
 		left: 0;
 		bottom: 0;
@@ -77,6 +71,16 @@ const MenuHolder = styled.ul`
 		background: black;
 		padding: 10px;
 		justify-content: space-around;
+	}
+`;
+const NavLinks = styled(NavLink)`
+	font-size: 1.8rem;
+	font-weight: 800;
+	text-decoration: none;
+	color: #ffffff;
+	cursor: pointer;
+	&.active {
+		color: #8a8a8a;
 	}
 `;
 

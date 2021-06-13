@@ -12,10 +12,10 @@ const FetchProvider = (props) => {
 	// const upcoming = 'upcoming';
 	// const latest = 'latest';
 
-	const fetchData = async (type) => {
+	const fetchData = async (type,device) => {
 		try {
 			const response = await fetch(
-				`https://api.themoviedb.org/3/movie/${type}?api_key=${apiKey}&language=en-US&page=1`,
+				`https://api.themoviedb.org/3/${device}/${type}?api_key=${apiKey}&language=en-US&page=1`,
 			);
 			const data = await response.json();
 			if (!response.ok)
