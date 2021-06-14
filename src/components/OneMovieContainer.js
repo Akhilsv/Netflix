@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { FetchContext } from '../FetchContext';
 
@@ -7,7 +7,7 @@ const OneMovieContainer = ({type,device}) => {
 	const baseUrl = `https://image.tmdb.org/t/p/original/`;
 	useEffect(() => {
 		fetchData(type,device);
-	}, []);
+	}, [type,device]);
 	let poster = '';
 	let randomMovie = '';
 	if (!loading) {
@@ -15,7 +15,6 @@ const OneMovieContainer = ({type,device}) => {
 		randomMovie = data.results[random];
 		poster = randomMovie.poster_path.split('/')[1];
 	}
-	console.log(randomMovie);
 	const test = `${baseUrl}${poster}`;
 
 	return (
@@ -24,12 +23,14 @@ const OneMovieContainer = ({type,device}) => {
 				<OneMovieHolder>
 					{/* <img src={`${baseUrl}${poster}`} alt='no image' /> */}
 					<Poster background={test}></Poster>
+				
 				</OneMovieHolder>
 			)}
 		</>
 	);
 };
 const OneMovieHolder = styled.div`
+display: flex;
 	width: 100vw;
 	height: 100vh;
 	@media (max-width: 600px) {

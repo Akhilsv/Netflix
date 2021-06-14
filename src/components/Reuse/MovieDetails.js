@@ -10,7 +10,7 @@ const MovieDetails = () => {
 	console.log();
 	useEffect(() => {
 		fetchData(params.movieId);
-	}, []);
+	}, [params.movieId]);
 	const fetchData = async (id) => {
 		const apiKey = `94dad5a9a7951ca6bce15cab74981a6a`;
 		try {
@@ -27,11 +27,20 @@ const MovieDetails = () => {
 			console.log(e);
 		}
 	};
+	let poster = '';
+	if (!loading) {
+		let img = movies.backdrop_path;
+		const baseUrl = `https://image.tmdb.org/t/p/original/`;
+		poster = `${baseUrl}${img}`;
+	}
+
 	return (
 		<>
-            <DetailsHolder>
-                
-            </DetailsHolder>
+			{!loading && (
+				<DetailsHolder>
+					<ImgContainer src={poster} alt={'no'} />
+				</DetailsHolder>
+			)}
 		</>
 	);
 };
@@ -43,5 +52,16 @@ const DetailsHolder = styled.div`
 	width: 100vw;
 	height: 100vh;
 	background-color: #000000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+const ImgContainer = styled.img`
+	margin-top: 90px;
+	min-width: 90%;
+	height: 300px;
+	@media (max-width: 600px) {
+		margin-top: 0px;
+	}
 `;
 export default MovieDetails;

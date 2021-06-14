@@ -7,11 +7,12 @@ const Nav = () => {
 	return (
 		<>
 			<NavBar>
-				<AppLogo>NETFLIX</AppLogo>
+				<AppLogo>N</AppLogo>
 				<MenuHolder>
 					<li>
 						<NavLinks to='/1243' activeClassName='active'>
 							<BsSearch />
+						
 						</NavLinks>
 					</li>
 					<li>
@@ -39,10 +40,13 @@ const NavBar = styled.div`
 	padding: 10px 50px 10px 30px;
 	z-index: 1000;
 	color: #e62e2d;
+	background: #000000ca;
+
 	font-family: 'Noto Sans HK', sans-serif;
 	@media (max-width: 600px) {
 		text-align: center;
 		padding: 10px 50px 10px 10px;
+		background: none;
 	}
 `;
 const AppLogo = styled.h1`
@@ -50,6 +54,7 @@ const AppLogo = styled.h1`
 	@media (max-width: 600px) {
 		font-size: 1.5rem;
 		text-align: center;
+		display: none;
 	}
 `;
 const MenuHolder = styled.ul`
@@ -62,6 +67,7 @@ const MenuHolder = styled.ul`
 		text-decoration: none;
 		list-style: none;
 	}
+	
 
 	@media (max-width: 600px) {
 		position: fixed;
@@ -77,11 +83,12 @@ const NavLinks = styled(NavLink)`
 	font-size: 1.8rem;
 	font-weight: 800;
 	text-decoration: none;
-	color: #ffffff;
+	color: #6e6e6ee6;
 	cursor: pointer;
 	&.active {
-		color: #8a8a8a;
+		color: #ffffff;
 	}
+	
 `;
 
 export default Nav;

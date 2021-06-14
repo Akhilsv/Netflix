@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { FetchContext } from './FetchContext';
 import Nav from './components/Nav';
-import { Route, Switch } from 'react-router-dom';
-import Tv from './Pages/Tv'
+import { Redirect, Route, Switch } from 'react-router-dom';
+import Tv from './Pages/Tv';
 import Home from './Pages/Home';
 import MovieDetails from './components/Reuse/MovieDetails';
 
@@ -26,7 +26,7 @@ function App() {
 					<MovieDetails />
 				</Route>
 				<Route exact path='*'>
-					<Home />
+					<Redirect to='/home' />
 				</Route>
 			</Switch>
 		</>

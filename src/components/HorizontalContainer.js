@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MovieCard from './Reuse/MovieCard';
 
-const HorizontalContainer = ({ type, name,device }) => {
+const HorizontalContainer = ({ type, name, device }) => {
 	const [movies, setMovies] = useState('');
 	const [loading, setLoading] = useState(true);
 
@@ -11,7 +11,7 @@ const HorizontalContainer = ({ type, name,device }) => {
 	}, []);
 	const baseUrl = `https://image.tmdb.org/t/p/original/`;
 
-	const fetchData = async (type,device) => {
+	const fetchData = async (type, device) => {
 		const apiKey = `94dad5a9a7951ca6bce15cab74981a6a`;
 		try {
 			const response = await fetch(
@@ -26,7 +26,6 @@ const HorizontalContainer = ({ type, name,device }) => {
 			console.log(e);
 		}
 	};
-
 
 	return (
 		<>
