@@ -16,17 +16,17 @@ function App() {
 		<>
 			<Nav />
 			<Switch>
-				<Route exact path='/home'>
+				<Route exact path='/movie'>
 					<Home />
 				</Route>
 				<Route exact path='/tv'>
 					<Tv />
 				</Route>
-				<Route exact path='/:movieId'>
+				<Route exact path='/:type/:movieId'>
 					<MovieDetails />
 				</Route>
 				<Route exact path='*'>
-					<Redirect to='/home' />
+					<Redirect to='/movie' />
 				</Route>
 			</Switch>
 		</>

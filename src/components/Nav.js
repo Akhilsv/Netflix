@@ -16,7 +16,7 @@ const Nav = () => {
 						</NavLinks>
 					</li>
 					<li>
-						<NavLinks to='/home'>
+						<NavLinks to='/movie'>
 							<RiMovie2Fill />
 						</NavLinks>
 					</li>

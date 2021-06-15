@@ -7,6 +7,4 @@
 body{
   background-color: rgba(0, 0, 0, 0.925);
 }
-body::-webkit-scrollbar {
-	display: none;
-}
+

@@ -36,6 +36,7 @@ const HorizontalContainer = ({ type, name, device }) => {
 						{movies.results.map((movie) => {
 							return (
 								<MovieCard
+									device={device}
 									key={movie.id}
 									mid={movie.id}
 									img={movie.poster_path}

@@ -7,15 +7,16 @@ const MovieDetails = () => {
 	const [loading, setLoading] = useState(true);
 
 	const params = useParams();
-	console.log();
+	console.log(params);
 	useEffect(() => {
-		fetchData(params.movieId);
+		fetchData(params.movieId,params.type);
 	}, [params.movieId]);
-	const fetchData = async (id) => {
+
+	const fetchData = async (id,device) => {
 		const apiKey = `94dad5a9a7951ca6bce15cab74981a6a`;
 		try {
 			const response = await fetch(
-				`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&page=1`,
+				`https://api.themoviedb.org/3/${device}/${id}?api_key=${apiKey}&language=en-US&page=1`,
 			);
 			const data = await response.json();
 			if (!response.ok)

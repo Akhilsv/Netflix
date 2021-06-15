@@ -2,12 +2,12 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-const MovieCard = ({ img, mid }) => {
+const MovieCard = ({ img, mid,device }) => {
 	const history = useHistory();
 	const baseUrl = `https://image.tmdb.org/t/p/original/`;
 	const poster = `${baseUrl}${img}`;
 	const gotoDetailsHandler = () => {
-		history.push(`/${mid}`);
+		history.push(`/${device}/${mid}`);
 	};
 
 	return (
