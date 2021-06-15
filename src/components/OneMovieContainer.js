@@ -2,18 +2,18 @@ import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { FetchContext } from '../FetchContext';
 
-const OneMovieContainer = ({type,device}) => {
+const OneMovieContainer = ({ type, device }) => {
 	const { fetchData, data, loading } = useContext(FetchContext);
 	const baseUrl = `https://image.tmdb.org/t/p/original/`;
 	useEffect(() => {
-		fetchData(type,device);
-	}, [type,device]);
+		fetchData(type, device);
+	}, [type, device]);
 	let poster = '';
 	let randomMovie = '';
 	if (!loading) {
 		const random = Math.floor(Math.random() * 19) + 1;
 		randomMovie = data.results[random];
-		poster = randomMovie.poster_path.split('/')[1];
+		poster = randomMovie.backdrop_path.split('/')[1];
 	}
 	const test = `${baseUrl}${poster}`;
 
@@ -23,15 +23,14 @@ const OneMovieContainer = ({type,device}) => {
 				<OneMovieHolder>
 					{/* <img src={`${baseUrl}${poster}`} alt='no image' /> */}
 					<Poster background={test}></Poster>
-				
 				</OneMovieHolder>
 			)}
 		</>
 	);
 };
 const OneMovieHolder = styled.div`
-display: flex;
-	width: 100vw;
+	display: flex;
+	width: 100%;
 	height: 100vh;
 	@media (max-width: 600px) {
 		height: 70vh;
