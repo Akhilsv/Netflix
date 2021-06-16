@@ -14,7 +14,8 @@ const Home = ({ framer, transition }) => {
 				animate='in'
 				exit='out'
 				variants={framer}
-				transition={transition}>
+				transition={transition}
+				>
 				<OneMovieContainer type={'airing_today'} device={'tv'} />
 
 				<HorizontalContainer

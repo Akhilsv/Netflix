@@ -4,7 +4,6 @@ import HorizontalContainer from '../components/HorizontalContainer';
 import OneMovieContainer from '../components/OneMovieContainer';
 import { motion } from 'framer-motion';
 
-
 const Home = ({ framer, transition }) => {
 	return (
 		<>
@@ -14,8 +13,7 @@ const Home = ({ framer, transition }) => {
 				animate='in'
 				exit='out'
 				variants={framer}
-				transition={transition}
-				>
+				transition={transition}>
 				<OneMovieContainer device={'movie'} type={'popular'} />
 				<HorizontalContainer
 					device={'movie'}
