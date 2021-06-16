@@ -2,11 +2,19 @@ import React from 'react';
 import HorizontalContainer from '../components/HorizontalContainer';
 import OneMovieContainer from '../components/OneMovieContainer';
 import { Holder } from './Home';
+import { motion } from 'framer-motion';
 
-const Home = () => {
+
+const Home = ({ framer, transition }) => {
 	return (
 		<>
-			<Holder>
+			<Holder
+				as={motion.div}
+				initial='initial'
+				animate='in'
+				exit='out'
+				variants={framer}
+				transition={transition}>
 				<OneMovieContainer type={'airing_today'} device={'tv'} />
 
 				<HorizontalContainer

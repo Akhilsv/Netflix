@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { LoadHolder, Loading } from './Loading';
 
-const MovieDetails = () => {
+const MovieDetails = ({ framer, transition }) => {
 	const [movie, setMovie] = useState('');
 	const [loading, setLoading] = useState(true);
 	const [toggle, setToggle] = useState('Overview');
@@ -41,8 +43,19 @@ const MovieDetails = () => {
 
 	return (
 		<>
+			{loading && (
+				<LoadHolder>
+					<Loading />
+				</LoadHolder>
+			)}
 			{!loading && (
-				<MovieDetailsContainer>
+				<MovieDetailsContainer
+					as={motion.div}
+					initial='initial'
+					animate='in'
+					exit='out'
+					variants={framer}
+					transition={transition}>
 					<ImgContainer background={poster}></ImgContainer>
 					<DetailsContainer>
 						<Header>
@@ -77,7 +90,8 @@ const MovieDetails = () => {
 	);
 };
 
-const MovieDetailsContainer = styled.div`
+const MovieDetailsContainer = styled(motion.div)`
+	
 	max-width: 100vw;
 	min-height: 97vh;
 	margin-top: 20px;

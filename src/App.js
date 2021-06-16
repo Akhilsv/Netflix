@@ -5,34 +5,65 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Tv from './Pages/Tv';
 import Home from './Pages/Home';
 import MovieDetails from './components/Reuse/MovieDetails';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
+
+
 
 function App() {
 	// const { fetchData,data } = useContext(FetchContext);
 	// const popularHandler = (e) => {
 	// 	fetchData(e.target.value);
 	// };
+	const pageVarient = {
+		initial: {
+			opacity: 0,
+			x: '100vw',
+		},
+		in: {
+			opacity: 1,
+			x: 0,
+		},
+		out: {
+			opacity: 0,
+			x: '-100vw',
+		},
+	};
+	const pageTransition = {
+		
+	};
 
 	return (
 		<>
 			<Nav />
-			<Switch>
-				<Route exact path='/movie'>
-					<Home />
-				</Route>
-				<Route exact path='/tv'>
-					<Tv />
-				</Route>
-				<Route exact path='/:type/:movieId'>
-					<MovieDetails />
-				</Route>
-				<Route exact path='*'>
-					<Redirect to='/movie' />
-				</Route>
-			</Switch>
+			<Out>
+				<AnimatePresence>
+					<Switch>
+						<Route exact path='/movie'>
+							<Home framer={pageVarient} transition={pageTransition} />
+						</Route>
+						<Route exact path='/tv'>
+							<Tv framer={pageVarient} transition={pageTransition} />
+						</Route>
+						<Route exact path='/:type/:movieId'>
+							<MovieDetails framer={pageVarient} transition={pageTransition} />
+						</Route>
+						<Route exact path='*'>
+							<Redirect to='/movie' />
+						</Route>
+					</Switch>
+				</AnimatePresence>
+			</Out>
 		</>
 	);
 }
-
+const Out = styled.div`
+	overflow-y: hidden;
+	overflow-x: hidden;
+	width: 100%;
+	height: 100%;
+`;
 export default App;
 
 // const apiKey = `94dad5a9a7951ca6bce15cab74981a6a`;

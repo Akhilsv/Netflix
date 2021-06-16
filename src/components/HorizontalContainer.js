@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { LoadHolder, Loading } from './Reuse/Loading';
 import MovieCard from './Reuse/MovieCard';
 
 const HorizontalContainer = ({ type, name, device }) => {
@@ -29,6 +30,11 @@ const HorizontalContainer = ({ type, name, device }) => {
 
 	return (
 		<>
+			{loading && (
+				<LoadHolder>
+					<Loading />
+				</LoadHolder>
+			)}
 			{!loading && (
 				<BigContainer>
 					<TypeName>{name}</TypeName>
