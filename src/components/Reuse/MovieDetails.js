@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const MovieDetails = () => {
 	const [movie, setMovie] = useState('');
 	const [loading, setLoading] = useState(true);
-	const [toggle, setToggle] = useState('Cast');
+	const [toggle, setToggle] = useState('Overview');
 
 	const params = useParams();
 	const toggleTab = (e) => {
@@ -36,13 +36,13 @@ const MovieDetails = () => {
 	if (!loading) {
 		let img = movie.backdrop_path || movie.poster_path;
 		const baseUrl = `https://image.tmdb.org/t/p/original/`;
-		poster = `${baseUrl}${img}` ;
+		poster = `${baseUrl}${img}`;
 	}
 
 	return (
 		<>
 			{!loading && (
-				<DetailsHolder>
+				<MovieDetailsContainer>
 					<ImgContainer background={poster}></ImgContainer>
 					<DetailsContainer>
 						<Header>
@@ -53,72 +53,80 @@ const MovieDetails = () => {
 								<h1>❓{movie.status}</h1>
 							</SymbolsHolder>
 						</Header>
-						<Body>
-							<SwitchChannel>
-								<Button onClick={toggleTab}>Overview</Button>
-								<Button onClick={toggleTab}>Cast</Button>
-							</SwitchChannel>
-							<ChannelDetails>
-								{toggle === 'Overview' && <p>{movie.overview}</p>}
-								{toggle === 'Cast' && <p>{'Showing Cast'}</p>}
-							</ChannelDetails>
-						</Body>
+						<SwitchChannel>
+							<Button
+								onClick={toggleTab}
+								className={toggle === 'Overview' && 'active'}>
+								Overview
+							</Button>
+							<Button
+								onClick={toggleTab}
+								className={toggle === 'Cast' && 'active'}>
+								Cast
+							</Button>
+						</SwitchChannel>
+
+						<ChannelDetails>
+							{toggle === 'Overview' && <p>{movie.overview}</p>}
+							{toggle === 'Cast' && <p>{'Showing Cast'}</p>}
+						</ChannelDetails>
 					</DetailsContainer>
-				</DetailsHolder>
+				</MovieDetailsContainer>
 			)}
 		</>
 	);
 };
 
-const DetailsHolder = styled.div`
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	margin-top: 60px;
+const MovieDetailsContainer = styled.div`
+	max-width: 100vw;
+	min-height: 97vh;
+	margin-top: 20px;
 	background-color: #000000;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	@media (max-width: 900px) {
 		margin-top: 0;
-
 		height: 100%;
+		justify-content: flex-start;
 		flex-direction: column;
 		padding-bottom: 50px;
 	}
 `;
 const ImgContainer = styled.div`
-	min-width: 50%;
-	height: 90%;
+	width: 45%;
+	height: 85vh;
 	background-image: ${(props) => `url(${props.background}) `};
 	background-size: 100% 100%;
 	@media (max-width: 900px) {
-		width: 100%;
-		height: 30%;
+		width: 100vw;
+		height: 30vh;
 	}
 `;
 const DetailsContainer = styled.div`
-	padding: 10px;
-	width: 100%;
-	height: 90%;
+	width: 52%;
+	height: 90vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
+	align-items: center;
+
 	@media (max-width: 900px) {
+		min-height: 50vh;
+		width: 100%;
 		justify-content: space-around;
 	}
 `;
 
 const Header = styled.div`
-	padding-left: 40px;
+	width: 95%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	height: 30vh;
 	@media (max-width: 900px) {
 		width: 100%;
-		height: 30%;
+		height: 20%;
 		padding-left: 20px;
 	}
 `;
@@ -126,7 +134,7 @@ const Title = styled.h1`
 	font-family: 'Noto Sans HK', sans-serif;
 	color: #ebebeb;
 	font-size: 1.5rem;
-	@media (max-width:400px){
+	@media (max-width: 400px) {
 		font-size: 1.2rem;
 	}
 `;
@@ -151,7 +159,7 @@ const Body = styled.div`
 	justify-content: space-around;
 	flex-direction: column;
 	align-items: center;
-	min-height: 70%;
+	min-height: 40%;
 	width: 90%;
 	margin: auto;
 	@media (max-width: 900px) {
@@ -159,52 +167,49 @@ const Body = styled.div`
 	}
 `;
 const SwitchChannel = styled.div`
-	height: 15%;
+	height: 10%;
 	width: 80%;
 	color: white;
 	display: flex;
 	align-items: center;
 	font-family: 'Noto Sans HK', sans-serif;
-
 	justify-content: space-evenly;
-	& h2 {
-		cursor: pointer;
-		&:hover {
-		}
-	}
-	@media (max-width: 900px) {
-		font-weight: 400;
-		font-size: 0.7rem;
-		width: 100%;
-	
-	}
 `;
 const Button = styled.h1`
 	transition: all 0.5s;
 	text-align: center;
 	width: 40%;
 	height: 100%;
-	border-bottom: 5px solid black;
+	font-size: 1.5rem;
+	border-bottom: 3px solid black;
 	@media (max-width: 900px) {
+		height: 70%;
 		font-weight: 600;
 		font-size: 1rem;
 	}
-	&:hover {
-		border-bottom: 5px solid #c28400;
+	&.active {
+		transition: all 0.5s;
+		border-bottom: 3px solid #c28400;
 		border-radius: 5px;
+	}
+	&:hover {
 	}
 `;
 const ChannelDetails = styled.div`
-	width: 90%;
-	min-height: 65%;
+	margin-top: 30px;
+	width: 70%;
 	font-size: 1.2rem;
 	letter-spacing: 1px;
 	& p {
 		color: #f7f4f4ef;
 		@media (max-width: 900px) {
-			overflow: scroll;
 			font-size: 1rem;
 		}
+	}
+	@media (max-width: 900px) {
+		margin-top: 0;
+		width: 80%;
+		min-height: 65%;
 	}
 `;
 export default MovieDetails;
