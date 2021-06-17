@@ -88,12 +88,15 @@ const NavLinks = styled(NavLink)`
 	&.active {
 		color: #ffffff;
 		&::after {
+			font-family: 'Raleway', sans-serif;
+			font-weight: 500px;
+			letter-spacing: 1px;
 			content: '${(prop) => prop.name}';
 			position: absolute;
 			font-size: 0.6rem;
 			bottom: -12px;
 			left: 50%;
-			color: #e62d2def;
+			color: #e63939ee;
 			transform: translate(-50%, -50%);
 		}
 	}
