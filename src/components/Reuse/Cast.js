@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Cast = ({ data }) => {
-	let six = data.cast.length = 6;
+	data.cast.length = 6;
 	console.log(data.cast);
 	return (
 		<>
@@ -11,7 +11,7 @@ const Cast = ({ data }) => {
 					return (
 						<CastCard key={index}>
 							<img
-								src={`http://image.tmdb.org/t/p/w500/${cast.profile_path}` }
+								src={`http://image.tmdb.org/t/p/w500/${cast.profile_path}`}
 								onError={(e) => {
 									e.target.src = '/Person.jpg';
 								}}
@@ -31,7 +31,6 @@ const CastBox = styled.div`
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	grid-gap: 25px;
 	grid-auto-flow: dense;
-	
 `;
 const CastCard = styled.div`
 	display: flex;

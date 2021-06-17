@@ -198,11 +198,13 @@ const SwitchChannel = styled.div`
 	width: 80%;
 	color: white;
 	display: flex;
+	
 	align-items: center;
 	font-family: 'Noto Sans HK', sans-serif;
 	justify-content: space-evenly;
 `;
 const Button = styled.h1`
+	cursor: pointer;
 	transition: all 0.5s;
 	text-align: center;
 	width: 30%;

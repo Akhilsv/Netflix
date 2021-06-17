@@ -10,18 +10,17 @@ const Nav = () => {
 				<AppLogo>N</AppLogo>
 				<MenuHolder>
 					<li>
-						<NavLinks to='/1243' activeClassName='active'>
+						<NavLinks to='/1243' activeClassName='active' name='Search'>
 							<BsSearch />
-						
 						</NavLinks>
 					</li>
 					<li>
-						<NavLinks to='/movie'>
+						<NavLinks to='/movie' activeClassName='active'  name='Movies'>
 							<RiMovie2Fill />
 						</NavLinks>
 					</li>
 					<li>
-						<NavLinks to='/tv'>
+						<NavLinks to='/tv' activeClassName='active' name='Movies'>
 							<BsFillTvFill />
 						</NavLinks>
 					</li>
@@ -84,11 +83,20 @@ const NavLinks = styled(NavLink)`
 	font-weight: 800;
 	text-decoration: none;
 	color: #6e6e6ee6;
+	position: relative;
 	cursor: pointer;
 	&.active {
 		color: #ffffff;
+		&::after {
+			content: '${(prop) => prop.name}';
+			position: absolute;
+			font-size: 0.6rem;
+			bottom: -12px;
+			left: 50%;
+			color: red;
+			transform: translate(-50%, -50%);
+		}
 	}
-	
 `;
 
 export default Nav;
