@@ -31,7 +31,6 @@ const MovieDetails = ({ framer, transition }) => {
 				throw new Error(`${data.status_message} ${response.status}`);
 			setMovie(data);
 			console.log(data);
-			
 		} catch (e) {
 			console.log(e);
 		}
@@ -168,17 +167,20 @@ const Title = styled.h1`
 
 const SymbolsHolder = styled.div`
 	display: flex;
-	padding-right: 30px;
+
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 	& h1 {
 		font-size: 1.4rem;
-		color: white;
+		color: #ffffff;
 		@media (max-width: 500px) {
 			font-weight: 500;
 			font-size: 1rem;
 		}
+	}
+	@media (max-width: 500px) {
+		justify-content: space-evenly;
 	}
 `;
 const Body = styled.div`
@@ -198,7 +200,7 @@ const SwitchChannel = styled.div`
 	width: 80%;
 	color: white;
 	display: flex;
-	
+
 	align-items: center;
 	font-family: 'Noto Sans HK', sans-serif;
 	justify-content: space-evenly;

@@ -8,6 +8,7 @@ import MovieDetails from './components/Reuse/MovieDetails';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import Search from './Pages/Search';
 
 
 
@@ -48,6 +49,9 @@ function App() {
 						</Route>
 						<Route exact path='/:type/:movieId'>
 							<MovieDetails framer={pageVarient} transition={pageTransition} />
+						</Route>
+						<Route path='/search'>
+							<Search />
 						</Route>
 						<Route exact path='*'>
 							<Redirect to='/movie' />

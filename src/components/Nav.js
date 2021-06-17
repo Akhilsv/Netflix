@@ -10,18 +10,18 @@ const Nav = () => {
 				<AppLogo>N</AppLogo>
 				<MenuHolder>
 					<li>
-						<NavLinks to='/1243' activeClassName='active' name='Search'>
-							<BsSearch />
-						</NavLinks>
-					</li>
-					<li>
-						<NavLinks to='/movie' activeClassName='active'  name='Movies'>
+						<NavLinks to='/movie' activeClassName='active' name='Movies'>
 							<RiMovie2Fill />
 						</NavLinks>
 					</li>
 					<li>
-						<NavLinks to='/tv' activeClassName='active' name='Movies'>
+						<NavLinks to='/tv' activeClassName='active' name='Tv-shows'>
 							<BsFillTvFill />
+						</NavLinks>
+					</li>
+					<li>
+						<NavLinks to='/search' activeClassName='active' name='Search'>
+							<BsSearch />
 						</NavLinks>
 					</li>
 				</MenuHolder>
@@ -57,16 +57,16 @@ const AppLogo = styled.h1`
 	}
 `;
 const MenuHolder = styled.ul`
-	width: 200px;
+	width: 250px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 
 	& li {
+		
 		text-decoration: none;
 		list-style: none;
 	}
-	
 
 	@media (max-width: 600px) {
 		position: fixed;
@@ -85,20 +85,21 @@ const NavLinks = styled(NavLink)`
 	color: #6e6e6ee6;
 	position: relative;
 	cursor: pointer;
+	&::after {
+		font-family: 'Raleway', sans-serif;
+		width: max-content;
+		font-weight: 500px;
+		letter-spacing: 1px;
+		content: '${(prop) => prop.name}';
+		position: absolute;
+		font-size: 0.6rem;
+		bottom: -11px;
+		left: 50%;
+		
+		transform: translate(-50%, -50%);
+	}
 	&.active {
 		color: #ffffff;
-		&::after {
-			font-family: 'Raleway', sans-serif;
-			font-weight: 500px;
-			letter-spacing: 1px;
-			content: '${(prop) => prop.name}';
-			position: absolute;
-			font-size: 0.6rem;
-			bottom: -12px;
-			left: 50%;
-			color: #e63939ee;
-			transform: translate(-50%, -50%);
-		}
 	}
 `;
 
