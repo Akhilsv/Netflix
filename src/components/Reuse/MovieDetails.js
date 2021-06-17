@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { LoadHolder, Loading } from './Loading';
+import Cast from './Cast';
 
 const MovieDetails = ({ framer, transition }) => {
 	const [movie, setMovie] = useState('');
+	const [cast, setCast] = useState();
 	const [loading, setLoading] = useState(true);
-	const [toggle, setToggle] = useState('Overview');
+	const [toggle, setToggle] = useState('Cast');
 
 	const params = useParams();
 	const toggleTab = (e) => {
@@ -29,9 +31,21 @@ const MovieDetails = ({ framer, transition }) => {
 				throw new Error(`${data.status_message} ${response.status}`);
 			setMovie(data);
 			console.log(data);
-			setLoading(false);
+			
 		} catch (e) {
 			console.log(e);
+		}
+		try {
+			const response = await fetch(
+				`https://api.themoviedb.org/3/${device}/${id}/credits?api_key=${apiKey}`,
+			);
+			const data = await response.json();
+			if (!response.ok)
+				throw new Error(`${data.status_message} ${response.status}`);
+			setCast(data);
+			setLoading(false);
+		} catch (error) {
+			console.log(error);
 		}
 	};
 	let poster = '';
@@ -81,7 +95,7 @@ const MovieDetails = ({ framer, transition }) => {
 
 						<ChannelDetails>
 							{toggle === 'Overview' && <p>{movie.overview}</p>}
-							{toggle === 'Cast' && <p>{'Showing Cast'}</p>}
+							{toggle === 'Cast' && <Cast data={cast} />}
 						</ChannelDetails>
 					</DetailsContainer>
 				</MovieDetailsContainer>
@@ -91,7 +105,6 @@ const MovieDetails = ({ framer, transition }) => {
 };
 
 const MovieDetailsContainer = styled(motion.div)`
-	
 	max-width: 100vw;
 	min-height: 97vh;
 	margin-top: 20px;
@@ -162,7 +175,7 @@ const SymbolsHolder = styled.div`
 	& h1 {
 		font-size: 1.4rem;
 		color: white;
-		@media (max-width: 400px) {
+		@media (max-width: 500px) {
 			font-weight: 500;
 			font-size: 1rem;
 		}
@@ -192,7 +205,7 @@ const SwitchChannel = styled.div`
 const Button = styled.h1`
 	transition: all 0.5s;
 	text-align: center;
-	width: 40%;
+	width: 30%;
 	height: 100%;
 	font-size: 1.5rem;
 	border-bottom: 3px solid black;
@@ -212,8 +225,11 @@ const Button = styled.h1`
 const ChannelDetails = styled.div`
 	margin-top: 30px;
 	width: 70%;
+	height: 50%;
 	font-size: 1.2rem;
 	letter-spacing: 1px;
+
+	overflow-y: scroll;
 	& p {
 		color: #f7f4f4ef;
 		@media (max-width: 900px) {
@@ -223,7 +239,9 @@ const ChannelDetails = styled.div`
 	@media (max-width: 900px) {
 		margin-top: 0;
 		width: 80%;
-		min-height: 65%;
+	}
+	&::-webkit-scrollbar {
+		display: none;
 	}
 `;
 export default MovieDetails;

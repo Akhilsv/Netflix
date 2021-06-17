@@ -26,7 +26,7 @@ const HorizontalContainer = ({ type, name, device }) => {
 			console.log(e);
 		}
 	};
-
+	
 	return (
 		<>
 			
