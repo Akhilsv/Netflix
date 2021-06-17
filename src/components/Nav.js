@@ -93,7 +93,7 @@ const NavLinks = styled(NavLink)`
 			font-size: 0.6rem;
 			bottom: -12px;
 			left: 50%;
-			color: red;
+			color: #e62d2def;
 			transform: translate(-50%, -50%);
 		}
 	}
