@@ -82,9 +82,10 @@ const NavLinks = styled(NavLink)`
 	font-size: 1.8rem;
 	font-weight: 800;
 	text-decoration: none;
-	color: #6e6e6ee6;
+	color: #919191e6;
 	position: relative;
 	cursor: pointer;
+	transition: color 0.5s ease;
 	&::after {
 		font-family: 'Raleway', sans-serif;
 		width: max-content;
@@ -100,6 +101,9 @@ const NavLinks = styled(NavLink)`
 	}
 	&.active {
 		color: #ffffff;
+	}
+	&:hover{
+		color:#f8f8f8e3;
 	}
 `;
 
