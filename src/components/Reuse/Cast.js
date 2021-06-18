@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Cast = ({ data }) => {
-	data.cast.length = 6;
-	console.log(data.cast);
+	data.cast.length = 10;
+
 	return (
 		<>
 			<CastBox>

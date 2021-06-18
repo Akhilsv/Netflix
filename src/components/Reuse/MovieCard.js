@@ -12,7 +12,12 @@ const MovieCard = ({ img, mid,device }) => {
 
 	return (
 		<>
-			<Card src={poster} onClick={gotoDetailsHandler}></Card>
+			<Card
+				src={poster}
+				onError={(e) => {
+					e.target.src = '/error.jpg';
+				}}
+				onClick={gotoDetailsHandler}></Card>
 		</>
 	);
 };

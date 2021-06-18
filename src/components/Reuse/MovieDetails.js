@@ -30,7 +30,6 @@ const MovieDetails = ({ framer, transition }) => {
 			if (!response.ok)
 				throw new Error(`${data.status_message} ${response.status}`);
 			setMovie(data);
-			console.log(data);
 		} catch (e) {
 			console.log(e);
 		}
@@ -82,13 +81,13 @@ const MovieDetails = ({ framer, transition }) => {
 						<SwitchChannel>
 							<Button
 								onClick={toggleTab}
-								className={toggle === 'Overview' && 'active'}>
-								Overview
+								className={toggle === 'Cast' && 'active'}>
+								Cast
 							</Button>
 							<Button
 								onClick={toggleTab}
-								className={toggle === 'Cast' && 'active'}>
-								Cast
+								className={toggle === 'Overview' && 'active'}>
+								Overview
 							</Button>
 						</SwitchChannel>
 
@@ -150,10 +149,11 @@ const Header = styled.div`
 	flex-direction: column;
 	justify-content: space-evenly;
 	height: 30vh;
+	padding: 0 20px;
 	@media (max-width: 900px) {
 		width: 100%;
 		height: 20%;
-		padding-left: 20px;
+		
 	}
 `;
 const Title = styled.h1`
@@ -164,13 +164,12 @@ const Title = styled.h1`
 		font-size: 1.2rem;
 	}
 `;
-
 const SymbolsHolder = styled.div`
 	display: flex;
-
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
+	
 	& h1 {
 		font-size: 1.4rem;
 		color: #ffffff;
@@ -178,9 +177,6 @@ const SymbolsHolder = styled.div`
 			font-weight: 500;
 			font-size: 1rem;
 		}
-	}
-	@media (max-width: 500px) {
-		justify-content: space-evenly;
 	}
 `;
 const Body = styled.div`

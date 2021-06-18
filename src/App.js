@@ -51,7 +51,7 @@ function App() {
 							<MovieDetails framer={pageVarient} transition={pageTransition} />
 						</Route>
 						<Route path='/search'>
-							<Search />
+							<Search framer={pageVarient} transition={pageTransition} />
 						</Route>
 						<Route exact path='*'>
 							<Redirect to='/movie' />
