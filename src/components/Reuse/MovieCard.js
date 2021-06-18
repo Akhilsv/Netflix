@@ -2,12 +2,13 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-const MovieCard = ({ img, mid,device }) => {
+const MovieCard = ({ img, mid, device }) => {
+	
 	const history = useHistory();
 	const baseUrl = `https://image.tmdb.org/t/p/original/`;
 	const poster = `${baseUrl}${img}`;
 	const gotoDetailsHandler = () => {
-		history.push(`/${device}/${mid}`);
+		history.push(`/${mid}`);
 	};
 
 	return (
@@ -22,7 +23,7 @@ const MovieCard = ({ img, mid,device }) => {
 	);
 };
 const Card = styled.img`
-	min-width: 300px;
+	width: 300px;
 	height: 300px;
 	margin: 10px;
 	transition: all 0.5s;

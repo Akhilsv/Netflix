@@ -47,11 +47,11 @@ function App() {
 						<Route exact path='/tv'>
 							<Tv framer={pageVarient} transition={pageTransition} />
 						</Route>
-						<Route exact path='/:type/:movieId'>
-							<MovieDetails framer={pageVarient} transition={pageTransition} />
-						</Route>
-						<Route path='/search'>
+						<Route exact path='/search'>
 							<Search framer={pageVarient} transition={pageTransition} />
+						</Route>
+						<Route exact path='/:movieId'>
+							<MovieDetails framer={pageVarient} transition={pageTransition} />
 						</Route>
 						<Route exact path='*'>
 							<Redirect to='/movie' />

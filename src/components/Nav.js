@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { RiMovie2Fill } from 'react-icons/ri';
 import { BsSearch, BsFillTvFill } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
+import { FetchContext } from '../FetchContext';
 const Nav = () => {
+	const { types } = useContext(FetchContext);
+	const [type, setType] = types;
+
 	return (
 		<>
 			<NavBar>
@@ -11,12 +15,20 @@ const Nav = () => {
 				<MenuHolder>
 					<li>
 						<NavLinks to='/movie' activeClassName='active' name='Movies'>
-							<RiMovie2Fill />
+							<RiMovie2Fill
+								onClick={() => {
+									setType('movie');
+								}}
+							/>
 						</NavLinks>
 					</li>
 					<li>
 						<NavLinks to='/tv' activeClassName='active' name='Tv-shows'>
-							<BsFillTvFill />
+							<BsFillTvFill
+								onClick={() => {
+									setType('tv');
+								}}
+							/>
 						</NavLinks>
 					</li>
 					<li>
@@ -63,7 +75,6 @@ const MenuHolder = styled.ul`
 	align-items: center;
 
 	& li {
-		
 		text-decoration: none;
 		list-style: none;
 	}
@@ -96,14 +107,14 @@ const NavLinks = styled(NavLink)`
 		font-size: 0.6rem;
 		bottom: -11px;
 		left: 50%;
-		
+
 		transform: translate(-50%, -50%);
 	}
 	&.active {
 		color: #ffffff;
 	}
-	&:hover{
-		color:#f8f8f8e3;
+	&:hover {
+		color: #f8f8f8e3;
 	}
 `;
 

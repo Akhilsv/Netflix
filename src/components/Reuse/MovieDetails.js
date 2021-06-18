@@ -1,30 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { LoadHolder, Loading } from './Loading';
 import Cast from './Cast';
+import { FetchContext } from '../../FetchContext';
 
 const MovieDetails = ({ framer, transition }) => {
+	const { types } = useContext(FetchContext);
+	const [type] = types;
+	console.log(type);
+	const location = useLocation();
 	const [movie, setMovie] = useState('');
 	const [cast, setCast] = useState();
 	const [loading, setLoading] = useState(true);
 	const [toggle, setToggle] = useState('Cast');
-
+	console.log(location);
 	const params = useParams();
 	const toggleTab = (e) => {
 		setToggle(e.target.innerHTML);
 	};
 
 	useEffect(() => {
-		fetchData(params.movieId, params.type);
+		fetchData(params.movieId, type);
 	}, [params.movieId]);
 
-	const fetchData = async (id, device) => {
+	const fetchData = async (id, type) => {
 		const apiKey = `94dad5a9a7951ca6bce15cab74981a6a`;
 		try {
 			const response = await fetch(
-				`https://api.themoviedb.org/3/${device}/${id}?api_key=${apiKey}&language=en-US&page=1`,
+				`https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}&language=en-US&page=1`,
 			);
 			const data = await response.json();
 			if (!response.ok)
@@ -35,7 +40,7 @@ const MovieDetails = ({ framer, transition }) => {
 		}
 		try {
 			const response = await fetch(
-				`https://api.themoviedb.org/3/${device}/${id}/credits?api_key=${apiKey}`,
+				`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${apiKey}`,
 			);
 			const data = await response.json();
 			if (!response.ok)
@@ -153,7 +158,6 @@ const Header = styled.div`
 	@media (max-width: 900px) {
 		width: 100%;
 		height: 20%;
-		
 	}
 `;
 const Title = styled.h1`
@@ -169,7 +173,7 @@ const SymbolsHolder = styled.div`
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
-	
+
 	& h1 {
 		font-size: 1.4rem;
 		color: #ffffff;
