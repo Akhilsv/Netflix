@@ -83,19 +83,18 @@ const Search = ({ framer, transition }) => {
 const SearchPage = styled(motion.div)`
 	margin-top: 80px;
 	width: 99vw;
-	min-height: 90vh;
+	height: 90vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	padding-bottom: 100px;
 	@media (max-width: 600px) {
 		margin-top: 20px;
 	}
 `;
 const SearchBar = styled.form`
 	width: 100%;
-	height: 25vh;
+	height: 200px;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -116,14 +115,13 @@ const SearchBar = styled.form`
 		font-weight: 600;
 		letter-spacing: 1px;
 		@media (max-width: 800px) {
-		
-			width: 98%;
+			width: 99%;
 		}
 	}
 `;
 const MovieContainer = styled.div`
 	width: 90%;
-	min-height: 80vh;
+	height: 100%;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
