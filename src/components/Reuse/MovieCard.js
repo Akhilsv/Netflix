@@ -8,7 +8,7 @@ const MovieCard = ({ img, mid, device }) => {
 	const baseUrl = `https://image.tmdb.org/t/p/original/`;
 	const poster = `${baseUrl}${img}`;
 	const gotoDetailsHandler = () => {
-		history.push(`/${mid}`);
+		history.push(`/${device}/${mid}`);
 	};
 
 	return (

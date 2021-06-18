@@ -22,7 +22,7 @@ const MovieDetails = ({ framer, transition }) => {
 	};
 
 	useEffect(() => {
-		fetchData(params.movieId, type);
+		fetchData(params.movieId, params.type);
 	}, [params.movieId]);
 
 	const fetchData = async (id, type) => {
@@ -57,7 +57,7 @@ const MovieDetails = ({ framer, transition }) => {
 		const baseUrl = `https://image.tmdb.org/t/p/original/`;
 		poster = `${baseUrl}${img}`;
 	}
-
+	
 	return (
 		<>
 			{loading && (

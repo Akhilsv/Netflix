@@ -66,7 +66,7 @@ const Search = ({ framer, transition }) => {
 						movies.results.map((movie) => {
 							return (
 								<MovieCard
-									device={'movie'}
+									device={choose}
 									key={movie.id}
 									mid={movie.id}
 									img={movie.poster_path}
