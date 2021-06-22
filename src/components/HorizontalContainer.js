@@ -8,8 +8,7 @@ const HorizontalContainer = ({ type, name, device }) => {
 
 	useEffect(() => {
 		fetchData(type, device);
-	}, []);
-	const baseUrl = `https://image.tmdb.org/t/p/original/`;
+	}, [type,device]);
 
 	const fetchData = async (type, device) => {
 		const apiKey = `94dad5a9a7951ca6bce15cab74981a6a`;

@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { FetchContext } from '../FetchContext';
 const Nav = () => {
 	const { types } = useContext(FetchContext);
+	// eslint-disable-next-line
 	const [type, setType] = types;
 
 	return (

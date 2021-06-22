@@ -2,10 +2,12 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import MovieCard from '../components/Reuse/MovieCard';
 import { motion } from 'framer-motion';
+import { BiSearchAlt } from 'react-icons/bi';
 
 const Search = ({ framer, transition }) => {
 	const [movies, setMovie] = useState();
 	const [choose, setChoose] = useState('movie');
+
 	const serachRef = useRef();
 	const fetchMovie = async (input) => {
 		try {
@@ -22,10 +24,18 @@ const Search = ({ framer, transition }) => {
 	};
 	const serachSubmitHandler = (e) => {
 		e.preventDefault();
+
 		const serachInput = serachRef.current.value;
 		fetchMovie(serachInput);
 	};
-	console.log(choose);
+	console.log(movies);
+	let filterMovie;
+	if (movies) {
+		filterMovie = movies.results.filter((m) => {
+			return m.backdrop_path !== null;
+		});
+	}
+
 	return (
 		<>
 			<SearchPage
@@ -35,35 +45,36 @@ const Search = ({ framer, transition }) => {
 				exit='out'
 				variants={framer}
 				transition={transition}>
-				<SearchBar onSubmit={serachSubmitHandler}>
-					<input
-						type='text'
-						placeholder={
-							choose === 'movie'
-								? 'Searching from movies..'
-								: 'Searching from tv-shows..'
-						}
-						ref={serachRef}></input>
+				<Header>
+					<SearchBar onSubmit={serachSubmitHandler}>
+						<input
+							type='text'
+							placeholder={
+								choose === 'movie'
+									? 'Searching from movies..'
+									: 'Searching from tv-shows..'
+							}
+							ref={serachRef}></input>
+						<button type='submit'>
+							<BiSearchAlt size={34} style={{ color: 'black' }} />
+						</button>
+					</SearchBar>
 					<ChooseContainer>
 						<Choose
 							className={choose === 'movie' && 'active'}
-							onClick={() => {
-								setChoose('movie');
-							}}>
+							onClick={() => setChoose('movie')}>
 							<h1>Movie</h1>
 						</Choose>
 						<Choose
 							className={choose === 'tv' && 'active'}
-							onClick={() => {
-								setChoose('tv');
-							}}>
+							onClick={() => setChoose('tv')}>
 							<h1>Tv-shows</h1>
 						</Choose>
 					</ChooseContainer>
-				</SearchBar>
+				</Header>
 				<MovieContainer>
 					{movies &&
-						movies.results.map((movie) => {
+						filterMovie.map((movie) => {
 							return (
 								<MovieCard
 									device={choose}
@@ -92,15 +103,20 @@ const SearchPage = styled(motion.div)`
 		margin-top: 20px;
 	}
 `;
-const SearchBar = styled.form`
+const Header = styled.div`
+	display: flex;
 	width: 100%;
 	height: 200px;
-	display: flex;
 	justify-content: space-around;
 	align-items: center;
+
 	@media (max-width: 800px) {
 		flex-direction: column;
 	}
+`;
+const SearchBar = styled.form`
+	position: relative;
+	width: 65%;
 	transition: all 0.5s;
 	& input {
 		outline: none;
@@ -108,7 +124,7 @@ const SearchBar = styled.form`
 		background: #ebebeb;
 		padding-left: 20px;
 		border-radius: 5px;
-		width: 68%;
+		width: 100%;
 		height: 50px;
 		font-size: 1.2rem;
 		font-family: 'Raleway', sans-serif;
@@ -118,7 +134,23 @@ const SearchBar = styled.form`
 			width: 99%;
 		}
 	}
+	& button {
+		cursor: pointer;
+		position: absolute;
+		top: 18%;
+		left: 95%;
+		outline: none;
+		border: none;
+		background: none;
+		@media (max-width: 800px) {
+			left: 88%;
+		}
+	}
+	@media (max-width: 800px) {
+		width: 99%;
+	}
 `;
+
 const MovieContainer = styled.div`
 	width: 90%;
 	height: 100%;

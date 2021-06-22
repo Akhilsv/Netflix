@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { FetchContext } from '../FetchContext';
 import { LoadHolder, Loading } from './Reuse/Loading';
 
-
-const OneMovieContainer = ({ type, device, }) => {
+const OneMovieContainer = ({ type, device }) => {
 	const { fetchData, data, loading } = useContext(FetchContext);
 	const baseUrl = `https://image.tmdb.org/t/p/original/`;
 	useEffect(() => {
 		fetchData(type, device);
+		// eslint-disable-next-line
 	}, [type, device]);
 	let poster = '';
 	let randomMovie = '';

@@ -1,21 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React, {  useEffect, useState } from 'react';
+import {  useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { LoadHolder, Loading } from './Loading';
 import Cast from './Cast';
-import { FetchContext } from '../../FetchContext';
+
 
 const MovieDetails = ({ framer, transition }) => {
-	const { types } = useContext(FetchContext);
-	const [type] = types;
-	console.log(type);
-	const location = useLocation();
+	
 	const [movie, setMovie] = useState('');
 	const [cast, setCast] = useState();
 	const [loading, setLoading] = useState(true);
 	const [toggle, setToggle] = useState('Cast');
-	console.log(location);
+
 	const params = useParams();
 	const toggleTab = (e) => {
 		setToggle(e.target.innerHTML);
@@ -23,7 +20,7 @@ const MovieDetails = ({ framer, transition }) => {
 
 	useEffect(() => {
 		fetchData(params.movieId, params.type);
-	}, [params.movieId]);
+	}, [params.movieId, params.type]);
 
 	const fetchData = async (id, type) => {
 		const apiKey = `94dad5a9a7951ca6bce15cab74981a6a`;
@@ -183,18 +180,7 @@ const SymbolsHolder = styled.div`
 		}
 	}
 `;
-const Body = styled.div`
-	display: flex;
-	justify-content: space-around;
-	flex-direction: column;
-	align-items: center;
-	min-height: 40%;
-	width: 90%;
-	margin: auto;
-	@media (max-width: 900px) {
-		width: 100%;
-	}
-`;
+
 const SwitchChannel = styled.div`
 	height: 10%;
 	width: 80%;
