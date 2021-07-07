@@ -9,15 +9,28 @@ const OneMovieContainer = ({ type, device }) => {
 	useEffect(() => {
 		fetchData(type, device);
 		// eslint-disable-next-line
+		return () => {
+			fetchData();
+		}
 	}, [type, device]);
 	let poster = '';
 	let randomMovie = '';
-	if (!loading) {
+	let test = '';
+	if (!loading ) {
+		console.log(data);
 		const random = Math.floor(Math.random() * 19) + 1;
 		randomMovie = data.results[random];
-		poster = randomMovie.backdrop_path.split('/')[1];
+		if (randomMovie.backdrop_path !== null) {
+			poster =
+				randomMovie.backdrop_path.split('/')[1] 
+		}
+		else {
+			console.log("yeahhhhhhhhhh");
+			poster = '/wr7nrzDrpGCEgYnw15jyAB59PtZ.jpg';
+		}
+				
+		test = `${baseUrl}${poster}`;
 	}
-	const test = `${baseUrl}${poster}`;
 
 	return (
 		<>

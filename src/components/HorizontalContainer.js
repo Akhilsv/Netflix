@@ -8,7 +8,10 @@ const HorizontalContainer = ({ type, name, device }) => {
 
 	useEffect(() => {
 		fetchData(type, device);
-	}, [type,device]);
+		return () => {
+			fetchData();
+		};
+	}, [type, device]);
 
 	const fetchData = async (type, device) => {
 		const apiKey = `94dad5a9a7951ca6bce15cab74981a6a`;
@@ -25,10 +28,9 @@ const HorizontalContainer = ({ type, name, device }) => {
 			console.log(e);
 		}
 	};
-	
+
 	return (
 		<>
-			
 			{!loading && (
 				<BigContainer>
 					<TypeName>{name}</TypeName>
