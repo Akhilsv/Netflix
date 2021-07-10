@@ -53,7 +53,7 @@ const OneMovieContainer = ({ type, device }) => {
 };
 const OneMovieHolder = styled.div`
 	display: flex;
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 	@media (max-width: 600px) {
 		height: 70vh;

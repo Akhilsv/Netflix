@@ -57,7 +57,7 @@ const Container = styled.div`
 	display: flex;
 	align-items: center;
 	overflow-x: auto;
-
+	
 	&::-webkit-scrollbar {
 		display: none;
 	}
@@ -67,6 +67,7 @@ const BigContainer = styled.div`
 	flex-direction: column;
 	background-color: #000000e1;
 	padding: 10px 10px 0px 10px;
+
 `;
 const TypeName = styled.h1`
 	font-size: 1.3rem;
