@@ -1,18 +1,15 @@
-import React, {  useEffect, useState } from 'react';
-import {  useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { LoadHolder, Loading } from './Loading';
 import Cast from './Cast';
 
-
 const MovieDetails = ({ framer, transition }) => {
-	
 	const [movie, setMovie] = useState('');
 	const [cast, setCast] = useState();
 	const [loading, setLoading] = useState(true);
 	const [toggle, setToggle] = useState('Cast');
-
 	const params = useParams();
 	const toggleTab = (e) => {
 		setToggle(e.target.innerHTML);
@@ -54,7 +51,7 @@ const MovieDetails = ({ framer, transition }) => {
 		const baseUrl = `https://image.tmdb.org/t/p/original/`;
 		poster = `${baseUrl}${img}`;
 	}
-	
+
 	return (
 		<>
 			{loading && (
@@ -103,6 +100,7 @@ const MovieDetails = ({ framer, transition }) => {
 		</>
 	);
 };
+
 
 const MovieDetailsContainer = styled(motion.div)`
 	max-width: 100vw;
@@ -186,7 +184,6 @@ const SwitchChannel = styled.div`
 	width: 80%;
 	color: white;
 	display: flex;
-
 	align-items: center;
 	font-family: 'Noto Sans HK', sans-serif;
 	justify-content: space-evenly;

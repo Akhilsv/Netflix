@@ -1,9 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const MovieCard = ({ img, mid, device }) => {
-	
 	const history = useHistory();
 	const baseUrl = `https://image.tmdb.org/t/p/original/`;
 	const poster = `${baseUrl}${img}`;
@@ -14,6 +15,7 @@ const MovieCard = ({ img, mid, device }) => {
 	return (
 		<>
 			<Card
+				effect="blur"
 				src={poster}
 				onError={(e) => {
 					e.target.src = '/error.jpg';
@@ -22,7 +24,7 @@ const MovieCard = ({ img, mid, device }) => {
 		</>
 	);
 };
-const Card = styled.img`
+const Card = styled(LazyLoadImage)`
 	width: 300px;
 	height: 300px;
 	margin: 10px;
@@ -32,7 +34,6 @@ const Card = styled.img`
 	@media (max-width: 600px) {
 		min-width: 150px;
 		height: 200px;
-	
 	}
 	&:hover {
 		transform: scale(1.05);
