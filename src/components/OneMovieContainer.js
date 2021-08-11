@@ -59,7 +59,7 @@ const OneMovieHolder = styled.div`
 		height: 70vh;
 	}
 	img {
-		width: 100%;
+		width: 100vw;
 		height: 100%;
 	}
 	box-shadow: inset 0 0 50px 70px #000000ad;
